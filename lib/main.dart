@@ -1,4 +1,6 @@
+// ignore_for_file: prefer_const_constructors
 import 'package:flutter/material.dart';
+import 'package:myflutterapp/log_in.dart';
 
 void main() => runApp(MaterialApp(
   home: Home(),
@@ -11,11 +13,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.deepPurple[900],
-      // appBar: AppBar(
-      //   title: Text('Dsolve'),
-      //   centerTitle: true,
-      //   backgroundColor: Colors.deepPurple[900],
-      // ),
+
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
@@ -25,12 +23,18 @@ class Home extends StatelessWidget {
                 child: Container(
                     width: 200,
                     height: 120,
-                    /*decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.circular(50.0)),*/
                     child: Image.asset('assets/solve1.png')),
           ),
         ),
+            Container(
+              height: 34,
+              width: 194,
+              child: Text(
+                'Sign Up',
+                style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+                ),
+            ),
             Padding(
               padding: EdgeInsets.all(8),
               child: SizedBox(
@@ -39,15 +43,11 @@ class Home extends StatelessWidget {
                   style: TextStyle(color: Colors.white),
                   textAlign: TextAlign.center,
                   decoration: InputDecoration(
-                      //border: UnderlineInputBorder(),
                       enabledBorder: const UnderlineInputBorder(
                        borderSide: BorderSide(color: Colors.blue),
                       ),
-                      //labelText: 'User Name',
-                      //hintText: 'Enter Your User Name',
                       hintStyle: TextStyle(color: Colors.white),
                       labelStyle: TextStyle(color: Colors.white),
-                      //errorText: 'This is error text'
                   ),
                 ),
               ),
@@ -67,12 +67,9 @@ class Home extends StatelessWidget {
                   style: TextStyle(color: Colors.white),
                   textAlign: TextAlign.center,
                   decoration: InputDecoration(
-                    //border: UnderlineInputBorder(),
                     enabledBorder: const UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.blue),
                     ),
-                    //labelText: 'Password',
-                    //hintText: 'Enter Your Password',
                     hintStyle: TextStyle(color: Colors.white),
                     labelStyle: TextStyle(color: Colors.white),
                   ),
@@ -94,12 +91,9 @@ class Home extends StatelessWidget {
                   style: TextStyle(color: Colors.white),
                   textAlign: TextAlign.center,
                   decoration: InputDecoration(
-                    //border: UnderlineInputBorder(),
                     enabledBorder: const UnderlineInputBorder(
                       borderSide: BorderSide(color: Colors.blue),
                     ),
-                    //labelText: 'Password',
-                    //hintText: 'Enter Your Password',
                     hintStyle: TextStyle(color: Colors.white),
                     labelStyle: TextStyle(color: Colors.white),
                   ),
@@ -120,8 +114,7 @@ class Home extends StatelessWidget {
                   color: Colors.blue[100], borderRadius: BorderRadius.circular(20)),
               child: ElevatedButton(
                 onPressed: () {
-                  //Navigator.push(
-                  //    context, MaterialPageRoute(builder: (_) => HomePage()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => log_in()));
                 },
                 child: Text(
                   'Sign Up',
@@ -145,20 +138,13 @@ class Home extends StatelessWidget {
                 child: Container(
                     width: 176,
                     height: 130,
-                    /*decoration: BoxDecoration(
-                        color: Colors.red,
-                        borderRadius: BorderRadius.circular(50.0)),*/
                     child: Image.asset('assets/diamond.png')),
               ),
             ),
           ],
         ),
       ),
-      // floatingActionButton: FloatingActionButton(
-      //   onPressed: () {},
-      //   child: Text('Click'),
-      //   backgroundColor: Colors.deepPurple[900],
-      // ),
+
     );
   }
 }
