@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-
 class MessagesScreen extends StatefulWidget {
   final List messages;
 
@@ -11,13 +10,13 @@ class MessagesScreen extends StatefulWidget {
 }
 
 class _MessagesScreenState extends State<MessagesScreen> {
-  ScrollController _scrollController =ScrollController();
+  ScrollController _scrollController = ScrollController();
+
   @override
   Widget build(BuildContext context) {
-    //dynamic currentTime = DateFormat.jm().format(DateTime.now());
     var w = MediaQuery.of(context).size.width;
     return ListView.separated(
-      controller: _scrollController,
+        controller: _scrollController,
         itemBuilder: (context, index) {
           return Container(
             margin: EdgeInsets.all(10),
@@ -27,29 +26,28 @@ class _MessagesScreenState extends State<MessagesScreen> {
                   : MainAxisAlignment.start,
               children: [
                 Container(
-                    padding: EdgeInsets.symmetric(vertical: 14, horizontal: 14),
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(20),
-                          topRight: Radius.circular(20),
-                          bottomRight: Radius.circular(
-                              widget.messages[index]['isUserMessage'] ? 0 : 20),
-                          topLeft: Radius.circular(
-                              widget.messages[index]['isUserMessage'] ? 20 : 0),
-                        ),
-                        color: widget.messages[index]['isUserMessage']
-                            ? Color.fromRGBO(50, 100, 130, 1)
-                            : Color.fromRGBO(23, 67, 93, 1)),
-                    constraints: BoxConstraints(maxWidth: w * 2 / 3),
-                    child: Column(
-                      children: [
-                        Text(
-                          widget.messages[index]['message'].text.text[0],
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        //Text(currentTime, style: TextStyle(color: Colors.white, fontSize: 15.0),),
-                      ],
-                    ),
+                  padding: EdgeInsets.symmetric(vertical: 14, horizontal: 14),
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.only(
+                        bottomLeft: Radius.circular(20),
+                        topRight: Radius.circular(20),
+                        bottomRight: Radius.circular(
+                            widget.messages[index]['isUserMessage'] ? 0 : 20),
+                        topLeft: Radius.circular(
+                            widget.messages[index]['isUserMessage'] ? 20 : 0),
+                      ),
+                      color: widget.messages[index]['isUserMessage']
+                          ? Color.fromRGBO(50, 100, 130, 1)
+                          : Color.fromRGBO(23, 67, 93, 1)),
+                  constraints: BoxConstraints(maxWidth: w * 2 / 3),
+                  child: Column(
+                    children: [
+                      Text(
+                        widget.messages[index]['message'].text.text[0],
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
@@ -58,5 +56,4 @@ class _MessagesScreenState extends State<MessagesScreen> {
         separatorBuilder: (_, i) => Padding(padding: EdgeInsets.only(top: 10)),
         itemCount: widget.messages.length);
   }
-
 }
