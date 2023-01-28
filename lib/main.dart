@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'Messages.dart';
 import 'package:intl/intl.dart'; // for date format
 import 'package:intl/date_symbol_data_local.dart'; // for other locales
+import 'package:animated_toggle_switch/animated_toggle_switch.dart';
+import 'package:flutter_switch/flutter_switch.dart';
 
 void main() => runApp(MyApp());
 
@@ -40,6 +42,7 @@ class _HomeState extends State<Home> {
   }
 
   var now = DateTime.now();
+  bool selected = false;
 
   @override
   Widget build(BuildContext context) {
@@ -85,7 +88,7 @@ class _HomeState extends State<Home> {
                     padding: EdgeInsets.only(top: 8.0, right: 120.0),
                     child: Text(
                       'Ask the experts any Design related query',
-                      style: TextStyle(fontSize: 12.0, color: Colors.white ),
+                      style: TextStyle(fontSize: 12.0, color: Colors.white),
                     ),
                   ),
                 ],
@@ -93,9 +96,9 @@ class _HomeState extends State<Home> {
             ),
             Container(
                 child: Text(
-              DateFormat.yMMMMd().format(now),
-              style: TextStyle(fontSize: 21.0, color: Colors.white),
-            )),
+                  DateFormat.yMMMMd().format(now),
+                  style: TextStyle(fontSize: 21.0, color: Colors.white),
+                )),
             Expanded(child: MessagesScreen(messages: messages)),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 14, vertical: 12),
@@ -106,30 +109,71 @@ class _HomeState extends State<Home> {
                       bottomLeft: Radius.circular(20),
                       topLeft: Radius.circular(20)),
                   color: Color.fromRGBO(19, 34, 72, 1)),
-              child: Row(
+              child: Column(
                 children: [
-                  IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.attach_file_sharp),
-                      color: Colors.white),
-                  Expanded(
-                      child: TextField(
-                    controller: _controller,
-                    style: TextStyle(color: Colors.white),
-                    decoration: InputDecoration(
-                        hintText: 'Type your query here...',
-                        hintStyle: TextStyle(
-                            fontSize: 22.0,
-                            color: Color.fromRGBO(41, 191, 206, 100)),
-                        contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 0)),
-                  )),
-                  IconButton(
-                      onPressed: () {
-                        sendMessage(_controller.text);
-                        _controller.clear();
-                      },
-                      icon: Icon(Icons.send),
-                      color: Colors.white)
+                  Row(
+                    children: [
+                      IconButton(
+                          onPressed: () {},
+                          icon: Icon(Icons.attach_file_sharp),
+                          color: Colors.white),
+                      Expanded(
+                          child: TextField(
+                            controller: _controller,
+                            style: TextStyle(color: Colors.white),
+                            decoration: InputDecoration(
+                                hintText: 'Type your query here...',
+                                hintStyle: TextStyle(
+                                    fontSize: 22.0,
+                                    color: Color.fromRGBO(41, 191, 206, 100)),
+                                contentPadding: EdgeInsets.fromLTRB(
+                                    10, 0, 0, 0)),
+                          )),
+                      IconButton(
+                          onPressed: () {
+                            sendMessage(_controller.text);
+                            _controller.clear();
+                          },
+                          icon: Icon(Icons.send),
+                          color: Colors.white)
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          IconButton(
+                              onPressed: () {},
+                              icon: Image.asset('assets/order.png'),
+                              color: Colors.white),
+                          Expanded(
+                            child: FlutterSwitch(
+                                activeColor: Colors.lightBlue,
+                                activeText: "FIND",
+                                activeTextColor: Colors.white,
+                                activeTextFontWeight: FontWeight.w400,
+                                inactiveColor: Colors.lightBlue,
+                                inactiveText: "ASK",
+                                inactiveTextColor: Colors.white,
+                                inactiveTextFontWeight: FontWeight.w400,
+                                showOnOff: true,
+                                value: selected,
+                                onToggle: (bool value) {
+                                  setState(() {
+                                    selected = value;
+                                    //selected = true;
+                                  });
+                                }),
+                          ),
+                          IconButton(
+                              onPressed: () {},
+                              icon: Image.asset('assets/toggle_id.png'),
+                              color: Colors.white),
+                        ],
+                      )
+                    ],
+                  ),
                 ],
               ),
             )
