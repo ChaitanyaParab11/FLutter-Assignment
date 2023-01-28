@@ -2,11 +2,8 @@
 import 'package:dialog_flowtter/dialog_flowtter.dart';
 import 'package:flutter/material.dart';
 import 'Messages.dart';
-import 'package:intl/intl.dart'; // for date format
-//import 'package:intl/date_symbol_data_local.dart'; // for other locales
-//import 'package:animated_toggle_switch/animated_toggle_switch.dart';
+import 'package:intl/intl.dart';
 import 'package:flutter_switch/flutter_switch.dart';
-
 
 class helpdesk extends StatefulWidget {
   const helpdesk({Key? key}) : super(key: key);
@@ -14,13 +11,6 @@ class helpdesk extends StatefulWidget {
   @override
   _helpdeskState createState() => _helpdeskState();
 }
-
-// class Home extends StatefulWidget {
-//   const Home({Key? key}) : super(key: key);
-//
-//   @override
-//   _HomeState createState() => _HomeState();
-//}
 
 class _helpdeskState extends State<helpdesk> {
   late DialogFlowtter dialogFlowtter;
@@ -41,9 +31,6 @@ class _helpdeskState extends State<helpdesk> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromRGBO(42, 1, 52, 100),
-      // appBar: AppBar(
-      //   title: Text('Help Desk'),
-      // ),
       body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
@@ -74,7 +61,6 @@ class _helpdeskState extends State<helpdesk> {
                     child: Text(
                       'Hey, Sanchit!',
                       style: TextStyle(fontSize: 22.0, color: Colors.white),
-                      //textAlign: TextAlign.center,
                     ),
                   ),
                   Container(
@@ -89,9 +75,9 @@ class _helpdeskState extends State<helpdesk> {
             ),
             Container(
                 child: Text(
-                  DateFormat.yMMMMd().format(now),
-                  style: TextStyle(fontSize: 21.0, color: Colors.white),
-                )),
+              DateFormat.yMMMMd().format(now),
+              style: TextStyle(fontSize: 21.0, color: Colors.white),
+            )),
             Expanded(child: MessagesScreen(messages: messages)),
             Container(
               padding: EdgeInsets.symmetric(horizontal: 14, vertical: 12),
@@ -112,16 +98,15 @@ class _helpdeskState extends State<helpdesk> {
                           color: Colors.white),
                       Expanded(
                           child: TextField(
-                            controller: _controller,
-                            style: TextStyle(color: Colors.white),
-                            decoration: InputDecoration(
-                                hintText: 'Type your query here...',
-                                hintStyle: TextStyle(
-                                    fontSize: 22.0,
-                                    color: Color.fromRGBO(41, 191, 206, 100)),
-                                contentPadding: EdgeInsets.fromLTRB(
-                                    10, 0, 0, 0)),
-                          )),
+                        controller: _controller,
+                        style: TextStyle(color: Colors.white),
+                        decoration: InputDecoration(
+                            hintText: 'Type your query here...',
+                            hintStyle: TextStyle(
+                                fontSize: 22.0,
+                                color: Color.fromRGBO(41, 191, 206, 100)),
+                            contentPadding: EdgeInsets.fromLTRB(10, 0, 0, 0)),
+                      )),
                       IconButton(
                           onPressed: () {
                             sendMessage(_controller.text);
@@ -155,7 +140,6 @@ class _helpdeskState extends State<helpdesk> {
                                 onToggle: (bool value) {
                                   setState(() {
                                     selected = value;
-                                    //selected = true;
                                   });
                                 }),
                           ),
@@ -196,16 +180,4 @@ class _helpdeskState extends State<helpdesk> {
   addMessage(Message message, [bool isUserMessage = false]) {
     messages.add({'message': message, 'isUserMessage': isUserMessage});
   }
-// String getCurrentDate() {
-//   var date = DateTime.now().toString();
-//
-//   var dateParse = DateTime.parse(date);
-//
-//   var formattedDate = "${dateParse.day}-${dateParse.month}-${dateParse.year}";
-//   return formattedDate.toString();
-// }
 }
-
-
-
-
