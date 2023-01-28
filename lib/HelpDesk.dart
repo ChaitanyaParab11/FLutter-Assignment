@@ -3,8 +3,6 @@ import 'package:dialog_flowtter/dialog_flowtter.dart';
 import 'package:flutter/material.dart';
 import 'Messages.dart';
 import 'package:intl/intl.dart'; // for date format
-//import 'package:intl/date_symbol_data_local.dart'; // for other locales
-//import 'package:animated_toggle_switch/animated_toggle_switch.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 
 
@@ -15,12 +13,6 @@ class helpdesk extends StatefulWidget {
   _helpdeskState createState() => _helpdeskState();
 }
 
-// class Home extends StatefulWidget {
-//   const Home({Key? key}) : super(key: key);
-//
-//   @override
-//   _HomeState createState() => _HomeState();
-//}
 
 class _helpdeskState extends State<helpdesk> {
   late DialogFlowtter dialogFlowtter;
@@ -41,9 +33,6 @@ class _helpdeskState extends State<helpdesk> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromRGBO(42, 1, 52, 100),
-      // appBar: AppBar(
-      //   title: Text('Help Desk'),
-      // ),
       body: Container(
         decoration: BoxDecoration(
             image: DecorationImage(
@@ -74,7 +63,6 @@ class _helpdeskState extends State<helpdesk> {
                     child: Text(
                       'Hey, Sanchit!',
                       style: TextStyle(fontSize: 22.0, color: Colors.white),
-                      //textAlign: TextAlign.center,
                     ),
                   ),
                   Container(
@@ -155,7 +143,6 @@ class _helpdeskState extends State<helpdesk> {
                                 onToggle: (bool value) {
                                   setState(() {
                                     selected = value;
-                                    //selected = true;
                                   });
                                 }),
                           ),
@@ -196,16 +183,6 @@ class _helpdeskState extends State<helpdesk> {
   addMessage(Message message, [bool isUserMessage = false]) {
     messages.add({'message': message, 'isUserMessage': isUserMessage});
   }
-// String getCurrentDate() {
-//   var date = DateTime.now().toString();
-//
-//   var dateParse = DateTime.parse(date);
-//
-//   var formattedDate = "${dateParse.day}-${dateParse.month}-${dateParse.year}";
-//   return formattedDate.toString();
-// }
-}
-
 
 
 
