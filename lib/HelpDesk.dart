@@ -183,6 +183,6 @@ class _helpdeskState extends State<helpdesk> {
   addMessage(Message message, [bool isUserMessage = false]) {
     messages.add({'message': message, 'isUserMessage': isUserMessage});
   }
-
+}
 
 
