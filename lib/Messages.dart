@@ -15,6 +15,12 @@ class _MessagesScreenState extends State<MessagesScreen> {
   @override
   Widget build(BuildContext context) {
     var w = MediaQuery.of(context).size.width;
+    if(_scrollController.hasClients) {
+      _scrollController.animateTo(
+          _scrollController.position.maxScrollExtent,
+          duration: Duration(milliseconds: 300),
+          curve: Curves.easeOut);
+    };
     return ListView.separated(
         controller: _scrollController,
         itemBuilder: (context, index) {

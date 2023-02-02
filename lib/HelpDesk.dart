@@ -26,6 +26,7 @@ class _helpdeskState extends State<helpdesk> {
 
   var now = DateTime.now();
   bool selected = false;
+  ScrollController _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -116,45 +117,55 @@ class _helpdeskState extends State<helpdesk> {
                           color: Colors.white)
                     ],
                   ),
-                  Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                        children: [
-                          IconButton(
-                              onPressed: () {},
-                              icon: Image.asset('assets/order.png'),
-                              color: Colors.white),
-                          Expanded(
-                            child: FlutterSwitch(
-                                activeColor: Colors.lightBlue,
-                                activeText: "FIND",
-                                activeTextColor: Colors.white,
-                                activeTextFontWeight: FontWeight.w400,
-                                inactiveColor: Colors.lightBlue,
-                                inactiveText: "ASK",
-                                inactiveTextColor: Colors.white,
-                                inactiveTextFontWeight: FontWeight.w400,
-                                showOnOff: true,
-                                value: selected,
-                                onToggle: (bool value) {
-                                  setState(() {
-                                    selected = value;
-                                  });
-                                }),
-                          ),
-                          IconButton(
-                              onPressed: () {},
-                              icon: Image.asset('assets/toggle_id.png'),
-                              color: Colors.white),
-                        ],
-                      )
-                    ],
-                  ),
                 ],
               ),
             )
           ],
+        ),
+      ),
+      bottomNavigationBar: BottomAppBar(
+        elevation: 4,
+        color: Color.fromRGBO(42, 1, 52, 100),
+        child: Container(
+          width: 150,
+          height: 65,
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage("assets/theme.png"), fit: BoxFit.cover)),
+          child: Padding(
+            padding: const EdgeInsets.all(4),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                IconButton(
+                    onPressed: () {},
+                    icon: Image.asset('assets/order.png'),
+                    color: Colors.white),
+                Expanded(
+                  child: FlutterSwitch(
+                      activeColor: Colors.lightBlue,
+                      activeText: "FIND",
+                      activeTextColor: Colors.white,
+                      activeTextFontWeight: FontWeight.w400,
+                      inactiveColor: Colors.lightBlue,
+                      inactiveText: "ASK",
+                      inactiveTextColor: Colors.white,
+                      inactiveTextFontWeight: FontWeight.w400,
+                      showOnOff: true,
+                      value: selected,
+                      onToggle: (bool value) {
+                        setState(() {
+                          selected = value;
+                        });
+                      }),
+                ),
+                IconButton(
+                    onPressed: () {},
+                    icon: Image.asset('assets/toggle_id.png'),
+                    color: Colors.white),
+              ],
+            ),
+          ),
         ),
       ),
     );
@@ -168,12 +179,20 @@ class _helpdeskState extends State<helpdesk> {
         addMessage(Message(text: DialogText(text: [text])), true);
       });
 
+
       DetectIntentResponse response = await dialogFlowtter.detectIntent(
           queryInput: QueryInput(text: TextInput(text: text)));
       if (response.message == null) return;
       setState(() {
         addMessage(response.message!);
       });
+
+      if(_scrollController.hasClients) {
+        _scrollController.animateTo(
+            _scrollController.position.maxScrollExtent,
+            duration: Duration(milliseconds: 300),
+            curve: Curves.easeOut);
+      };
     }
   }
 
